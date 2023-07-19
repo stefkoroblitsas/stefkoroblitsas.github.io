@@ -38,10 +38,16 @@
                             <strong>Area:</strong> ${feature.properties.area}<br/>
                         `);
                     }
-                
-                }
-            }).addTo(map);
-        });
+                    map.on('moveend', function() {
+                        var center = map.getCenter();
+                        var zoom = map.getZoom();
+    
+                        console.log('Center: ', center);
+                        console.log('Zoom level: ', zoom);
+                    });             
+                    }
+                }).addTo(map);
+            });
 
     </script>
 </body>
