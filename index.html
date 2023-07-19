@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>elite big wall climbs</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+    <div id="mapid" style="height: 800px;"></div>
+
+    <script>
+        var map = L.map('mapid').setView([51.505, -0.09], 5);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19
+        }).addTo(map);
+
+    fetch('https://raw.githubusercontent.com/stefkoroblitsas/mapping/main/big_wall_climbs.geojson')
+        .then(response => response.json())
+        .then(data => {
+            L.geoJSON(data, {
+                pointToLayer: function (feature, latlng) {
+                    return L.circleMarker(latlng, {
+                        radius: 8,
+                        fillColor: "#ff7800",
+                        color: "#000",
+                        weight: 1,
+                        opacity: 1,
+                        fillOpacity: 0.8
+                    });
+                },
+                onEachFeature: function (feature, layer) {
+                    if (feature.properties) {
+                        layer.bindPopup(`
+                            <strong>Route:</strong> ${feature.properties.route}<br/>
+                            <strong>Grade:</strong> ${feature.properties.grade}<br/>
+                            <strong>Climb:</strong> ${feature.properties.climb}<br/>
+                            <strong>Area:</strong> ${feature.properties.area}<br/>
+                        `);
+                    }
+                
+                }
+            }).addTo(map);
+        });
+
+    </script>
+</body>
+</html>
