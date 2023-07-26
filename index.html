@@ -17,7 +17,7 @@
             maxZoom: 19
         }).addTo(map);
     
-        fetch('https://raw.githubusercontent.com/youraccount/mapping/main/movie_climbs.geojson')
+        fetch('https://raw.githubusercontent.com/stefkoroblitsas/mapping/main/movie_climbs.geojson')
         .then(response => response.json())
         .then(data => {
             var movieColors = chroma.scale('Set1').mode('lch').colors(data.features.length);
