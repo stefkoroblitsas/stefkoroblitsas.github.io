@@ -4,17 +4,58 @@
     <title>elite big wall climbs</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="src\Control.Coordinates.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"></script>
 </head>
 <body>
     <div id="mapid" style="height: 800px;"></div>
 
     <script>
-        var map = L.map('mapid').setView([51.505, -0.09], 5);
+        var map = L.map('mapid').setView([20, 5], 3);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19
         }).addTo(map);
+    
+        fetch('https://raw.githubusercontent.com/youraccount/mapping/main/movie_climbs.geojson')
+        .then(response => response.json())
+        .then(data => {
+            var movieColors = chroma.scale('Set1').mode('lch').colors(data.features.length);
+            var movieToColor = {};
+            for (var i = 0; i < data.features.length; i++) {
+                movieToColor[data.features[i].properties.Movie] = movieColors[i];
+            }
+            L.geoJSON(data, {
+                pointToLayer: function (feature, latlng) {
+                    return L.circleMarker(latlng, {
+                        radius: 8,
+                        fillColor: movieToColor[feature.properties.Movie],
+                        color: "#000",
+                        weight: 1,
+                        opacity: 1,
+                        fillOpacity: 0.8
+                    });
+                },
+                onEachFeature: function (feature, layer) {
+                    if (feature.properties) {
+                        layer.bindPopup(`
+                            <strong>Name:</strong> ${feature.properties.Name}<br/>
+                            <strong>Height (m):</strong> ${feature.properties.Height_m}<br/>
+                            <strong>Country:</strong> ${feature.properties.Country}<br/>
+                            <strong>Movie:</strong> ${feature.properties.Movie}<br/>
+                        `);
+                    }
+                    map.on('moveend', function() {
+                        var center = map.getCenter();
+                        var zoom = map.getZoom();
 
+                        console.log('Center: ', center);
+                        console.log('Zoom level: ', zoom);
+                    });             
+                }
+            }).addTo(map);
+        });    
+        
     fetch('https://raw.githubusercontent.com/stefkoroblitsas/mapping/main/big_wall_climbs.geojson')
         .then(response => response.json())
         .then(data => {
@@ -36,6 +77,7 @@
                             <strong>Grade:</strong> ${feature.properties.grade}<br/>
                             <strong>Climb:</strong> ${feature.properties.climb}<br/>
                             <strong>Area:</strong> ${feature.properties.area}<br/>
+
                         `);
                     }
                     map.on('moveend', function() {
