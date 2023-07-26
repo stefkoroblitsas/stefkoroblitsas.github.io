@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>elite big wall climbs</title>
+    <title>elite climbs</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="src\Control.Coordinates.js"></script>
@@ -11,86 +11,99 @@
     <div id="mapid" style="height: 800px;"></div>
 
     <script>
-        var map = L.map('mapid').setView([20, 5], 3);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19
-        }).addTo(map);
+        var baseMaps = {
+            "OpenStreetMap": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19
+            })
+        };
+        
+        var overlayMaps = {}; // Will hold your GeoJSON layers
+        
+        var map = L.map('mapid', {
+            layers: [baseMaps.OpenStreetMap] // Add default layer
+        }).setView([20, 5], 3);
+        
+        baseMaps.OpenStreetMap.addTo(map);        
     
         fetch('https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.io/main/movie_climbs.geojson')
-        .then(response => response.json())
-        .then(data => {
-            var movieColors = chroma.scale('Set1').mode('lch').colors(data.features.length);
-            var movieToColor = {};
-            for (var i = 0; i < data.features.length; i++) {
-                movieToColor[data.features[i].properties.Movie] = movieColors[i];
-            }
-            L.geoJSON(data, {
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng, {
-                        radius: 8,
-                        fillColor: movieToColor[feature.properties.Movie],
-                        color: "#000",
-                        weight: 1,
-                        opacity: 1,
-                        fillOpacity: 0.8
-                    });
-                },
-                onEachFeature: function (feature, layer) {
-                    if (feature.properties) {
-                        layer.bindPopup(`
-                            <strong>Name:</strong> ${feature.properties.Name}<br/>
-                            <strong>Height (m):</strong> ${feature.properties.Height_m}<br/>
-                            <strong>Country:</strong> ${feature.properties.Country}<br/>
-                            <strong>Movie:</strong> ${feature.properties.Movie}<br/>
-                        `);
-                    }
-                    map.on('moveend', function() {
-                        var center = map.getCenter();
-                        var zoom = map.getZoom();
-
-                        console.log('Center: ', center);
-                        console.log('Zoom level: ', zoom);
-                    });             
+            .then(response => response.json())
+            .then(data => {
+                var movieColors = chroma.scale('Set1').mode('lch').colors(data.features.length);
+                var movieToColor = {};
+                for (var i = 0; i < data.features.length; i++) {
+                    movieToColor[data.features[i].properties.Movie] = movieColors[i];
                 }
-            }).addTo(map);
-        });    
-        
-    fetch('https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.io/main/big_wall_climbs.geojson')
-        .then(response => response.json())
-        .then(data => {
-            L.geoJSON(data, {
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng, {
-                        radius: 8,
-                        fillColor: "#ff7800",
-                        color: "#000",
-                        weight: 1,
-                        opacity: 1,
-                        fillOpacity: 0.8
-                    });
-                },
-                onEachFeature: function (feature, layer) {
-                    if (feature.properties) {
-                        layer.bindPopup(`
-                            <strong>Route:</strong> ${feature.properties.route}<br/>
-                            <strong>Grade:</strong> ${feature.properties.grade}<br/>
-                            <strong>Climb:</strong> ${feature.properties.climb}<br/>
-                            <strong>Area:</strong> ${feature.properties.area}<br/>
+                var geojsonLayer = L.geoJSON(data, {
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng, {
+                            radius: 8,
+                            fillColor: movieToColor[feature.properties.Movie],
+                            color: "#000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        });
+                    },
+                    onEachFeature: function (feature, layer) {
+                        if (feature.properties) {
+                            layer.bindPopup(`
+                                <strong>Name:</strong> ${feature.properties.Name}<br/>
+                                <strong>Height (m):</strong> ${feature.properties.Height_m}<br/>
+                                <strong>Country:</strong> ${feature.properties.Country}<br/>
+                                <strong>Movie:</strong> ${feature.properties.Movie}<br/>
+                            `);
+                        }
+                        map.on('moveend', function() {
+                            var center = map.getCenter();
+                            var zoom = map.getZoom();
 
-                        `);
-                    }
-                    map.on('moveend', function() {
-                        var center = map.getCenter();
-                        var zoom = map.getZoom();
-    
-                        console.log('Center: ', center);
-                        console.log('Zoom level: ', zoom);
-                    });             
+                            console.log('Center: ', center);
+                            console.log('Zoom level: ', zoom);
+                        });             
                     }
                 }).addTo(map);
+                overlayMaps["Movie Climbs"] = geojsonLayer; // Add the layer to the overlayMaps object
+                
+                // Start the second fetch operation
+                return fetch('https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.io/main/big_wall_climbs.geojson');
+            })
+            .then(response => response.json())
+            .then(data => {
+                var geojsonLayer2 = L.geoJSON(data, {
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng, {
+                            radius: 8,
+                            fillColor: "#0008ff",
+                            color: "#000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        });
+                    },
+                    onEachFeature: function (feature, layer) {
+                        if (feature.properties) {
+                            layer.bindPopup(`
+                                <strong>Route:</strong> ${feature.properties.route}<br/>
+                                <strong>Grade:</strong> ${feature.properties.grade}<br/>
+                                <strong>Climb:</strong> ${feature.properties.climb}<br/>
+                                <strong>Area:</strong> ${feature.properties.area}<br/>
+                            `);
+                        }
+                        map.on('moveend', function() {
+                            var center = map.getCenter();
+                            var zoom = map.getZoom();
+        
+                            console.log('Center: ', center);
+                            console.log('Zoom level: ', zoom);
+                        });             
+                    }
+                }).addTo(map);
+                overlayMaps["Big wall climbs over 100 m and 5.13 difficulty"] = geojsonLayer2; // Add the layer to the overlayMaps object
+            })
+            .then(() => {
+                // Add the layer control after both fetch operations have finished
+                L.control.layers(baseMaps, overlayMaps).addTo(map);
             });
-
     </script>
 </body>
 </html>
