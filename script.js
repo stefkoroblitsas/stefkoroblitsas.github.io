@@ -1,6 +1,10 @@
 var baseMaps = {
     "OpenStreetMap": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19
+    }),
+    "World Imagery": L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+        opacity: 0.2  
     })
 };
 
@@ -14,7 +18,7 @@ var svgIcon = L.icon({
 var overlayMaps = {}; // Will hold your GeoJSON layers
 
 var map = L.map('mapid', {
-    layers: [baseMaps.OpenStreetMap] // Add default layer
+    layers: [baseMaps["World Imagery"]] // Add default layer
 }).setView([20, 5], 3);
 
 baseMaps.OpenStreetMap.addTo(map);        
@@ -138,3 +142,21 @@ fetch('https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.
     
         map.addControl(searchControl); // Add the control to the map
     });
+
+var infoPopupContent = `
+    <h2>Map Information</h2>
+    <p>This map displays climbing routes and movies locations. The data is sourced from various climbing communities and movie databases.</p>
+    <p>Click on any point to get more information.</p>
+    <a href="https://example.com/data_source" target="_blank">View data source</a>
+`;
+
+var infoPopup = L.popup()
+    .setLatLng([20, 5])  // Set the geographic position where the popup will be anchored
+    .setContent(infoPopupContent)
+    .openOn(map);  // Open the popup on the map object
+
+// add Leaflet-Geoman controls with some options to the map  
+map.pm.addControls({  
+    position: 'topleft',  
+    drawCircle: false,  
+  });  
