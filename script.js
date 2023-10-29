@@ -5,7 +5,7 @@ var baseMaps = {
 };
 
 var svgIcon = L.icon({
-    iconUrl: 'https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.io/main/mms_black_24dp.svg',
+    iconUrl: 'https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.io/main/poi.svg',
     iconSize: [38, 95], // size of the icon, adjust as needed
     iconAnchor: [22, 94], // point of the icon which will correspond to marker's location, adjust as needed
     popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor, adjust as needed

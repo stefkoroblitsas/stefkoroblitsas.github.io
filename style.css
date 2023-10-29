@@ -20,7 +20,62 @@ html, body, #mapid {
     font-size: 14px;
 }
 
-h1 {
+#webmapTitle {
+    font-size: 1.5em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
     text-align: center;
-    font-family: 'Arial', sans-serif; /* Replace 'Arial' with your preferred font */
+    color: white;
+    text-shadow: 1px 2px rgb(28, 12, 12);
 }
+
+#header {
+    position: absolute;
+    z-index: 4;
+    top: 0;
+    left: 0px;
+    right: 0;
+    height: 60px;
+    background-color: #0d5f92;
+    box-shadow: rgb(0 0 0 / 50%) 2px 0 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1em;
+  }
+
+.footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 50px;
+    z-index: 3;
+    background-color: #0d5f92;
+    color: #fff;
+    font-family: "Lato", sans-serif;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .footer i {
+    padding: 4px;
+    cursor: pointer;
+  }
+  
+  .footer:hover i:hover {
+    color: #7ab236;
+  }
+  
+  .footer a {
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  
+  
