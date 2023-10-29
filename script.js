@@ -6,9 +6,9 @@ var baseMaps = {
 
 var svgIcon = L.icon({
     iconUrl: 'https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.io/main/poi.svg',
-    iconSize: [38, 95], // size of the icon, adjust as needed
-    iconAnchor: [22, 94], // point of the icon which will correspond to marker's location, adjust as needed
-    popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor, adjust as needed
+    iconSize: [20, 20], // size of the icon, adjust as needed
+    iconAnchor: [0, 0], // point of the icon which will correspond to marker's location, adjust as needed
+    popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor, adjust as needed
 });
 
 var overlayMaps = {}; // Will hold your GeoJSON layers
