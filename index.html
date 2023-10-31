@@ -3,35 +3,95 @@
     <head>
         <title>Elite Climbs</title>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-search/dist/leaflet-search.min.css" />
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">      
+        <link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css" />
+        <link rel="stylesheet" href="../sidebar/sidebar.css">
+
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
         <script src="src\Control.Coordinates.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"></script>
         <script src="https://cesium.com/downloads/cesiumjs/releases/1.78/Build/Cesium/Cesium.js"></script>
-        <link rel="stylesheet" href="https://unpkg.com/leaflet-search/dist/leaflet-search.min.css" />
         <script src="https://unpkg.com/leaflet-search/dist/leaflet-search.min.js"></script>
         <script src="https://unpkg.com/leaflet-search"></script>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">      
-        <link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css" />
-        <script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.min.js"></script>  
+        <script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.min.js"></script> 
+        <script src="../sidebar/sidebar.js"></script>
+
     </head>
 
-    <body>
-        <h1>Rock Climbing</h1>
-        <div id="mapid" style="height: 850px;"></div>
-        <div id="legend"></div>
+    <script type="module" src="script.js"></script>
+    
 
+    <body>
+        <h1>Rock Climbing</h1>        
         <script type="module" src="script.js"></script>
-        
+
         <div id="header">
             <img src="https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.io/main/earth-australia-o.svg" alt="Logo" width="60" height="60">
             <div id="clientLogo"></div>
             <span id="webmapTitle">
-                <label>Climbing movies map example</label>
+                <label>Climbing movies - a coded leaflet webmap example</label>
             </span>
           </div>
+        
+        <div id="container" class="sidebar-map">
+            <div id="sidebar" class="sidebar collapsed">
+                <!-- Nav tabs -->
+                <div class="sidebar-tabs">
+                    <ul role="tablist">
+                        <li><a href="#home" role="tab"><i class="fa fa-home"></i></a></li>
+                        <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+                    </ul>
+                </div>
+            
+                <!-- Tab panes -->
+                <div class="sidebar-content">
+                    <div class="sidebar-pane" id="home">
+                        <h1 class="sidebar-header">Sidebar<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                        <p><p>
+                            The map is built upon the <a href="https://leafletjs.com/" target="_blank">Leaflet.js library</a>, a leading open-source JavaScript library for mobile-friendly interactive maps. Its simplicity, performance, and usability make it a go-to solution for developers. The base maps utilized in this project are sourced from OpenStreetMap and World Imagery, providing a detailed and contrasting view of the terrains.
+                        </p>
+                        
+                        <h3>A variety of plugins enhance the map's functionality and user experience:</h3>
+                        
+                        <ul>
+                            <li>
+                                <strong>Leaflet Search Plugin:</strong>
+                                Enables users to easily search and zoom into specific points of interest on the map, making navigation intuitive and efficient.
+                            </li>
+                            <li>
+                                <strong>Leaflet Geoman Plugin:</strong>
+                                Provides drawing and editing functionalities, empowering users to interact with the map in a meaningful way.
+                            </li>
+                            <li>
+                                <strong>Leaflet Sidebar Plugin:</strong>
+                                Facilitates a clean and collapsible sidebar, housing extra information and settings without cluttering the map view.
+                            </li>
+                            <li>
+                                <strong>Chroma.js:</strong>
+                                Aids in generating a dynamic color scheme for different categories of points, enhancing the visual appeal and interpretability of the map.
+                            </li>
+                            <li>
+                                <strong>GeoJSON:</strong>
+                                The geographical data representing the climbing routes and movie locations is structured in GeoJSON format, a type of open standard format designed for representing simple geographical features, along with their non-spatial attributes.
+                            </li>
+                        </ul>
+                        </p>
+                    </div>
+                    <div class="sidebar-pane" id="settings">
+                        <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                        <p>Settings Pane Content</p>
+                    </div>
+                </div>
+            </div>
+            <div id="legend"></div>
+            <div id="mapid" style="height: 850px;"></div>
+        </div>
 
-        <div class="footer">
+
+
+<!--         <div class="footer">
             <a href="https://www.linkedin.com/in/stefanos-koroblitsas/"
               target="_blank"
               draggable="false"
@@ -40,7 +100,7 @@
         
                 <div id="logoFooter"></div>
             </a>
-          </div>
+          </div> -->
     </body>
     
 </html>

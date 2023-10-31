@@ -21,14 +21,14 @@ html, body, #mapid {
 }
 
 #webmapTitle {
-    font-size: 1.5em;
+    font-size: 2.0em;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
     font-family: 'Arial', sans-serif;
     text-align: center;
     color: white;
-    text-shadow: 1px 2px rgb(28, 12, 12);
+    text-shadow: 1px 1px rgb(28, 12, 12);
 }
 
 #header {
@@ -38,7 +38,7 @@ html, body, #mapid {
     left: 0px;
     right: 0;
     height: 75px;
-    background-color: #034694;
+    background-color: #1f5088;
     box-shadow: rgb(0 0 0 / 50%) 2px 0 5px;
     display: flex;
     justify-content: space-between;
@@ -77,6 +77,39 @@ html, body, #mapid {
     text-decoration: none;
   }
 
-  
+  .leaflet-control-layers {
+    top: 10px; /* Adjusts the distance from the top */
+    right: 80px; /* Adjusts the distance from the right */
+    position: flex;
+  }
+
+  #container {
+    display: flex;
+    height: 100vh; /* Ensure it takes up the full viewport height */
+    width: 100vw; /* Ensure it takes up the full viewport width */
+    overflow: hidden;
+  }
+
+  #mapid {
+    position: absolute;
+    top: 80px;
+    bottom: 0;
+    left: 40px;  /* Adjusted to align with the collapsed sidebar */
+    right: 0;
+    transition: left 500ms;  /* Smooth transition when the sidebar state changes */
+  }
+
+  @media (min-width: 768px) {
+    #mapid {
+        left: 450px;  /* Adjusted to align with the expanded sidebar */
+    }
+
+    .sidebar.collapsed ~ #mapid {
+        left: 50px;  /* Adjusted to align with the collapsed sidebar */
+    }
+  }
+
+
+
   
   

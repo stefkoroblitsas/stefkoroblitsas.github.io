@@ -80,7 +80,7 @@ fetch('https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.
             }
         }).addTo(map);
         overlayMaps["Movie Climbs"] = geojsonLayer; // Add the layer to the overlayMaps object
-        var legend = L.control({position: 'bottomright'});
+        var legend = L.control({position: 'bottomleft'});
         
         legend.onAdd = function(map) {
             var div = L.DomUtil.create('div', 'info legend');
@@ -161,3 +161,14 @@ map.pm.addControls({
     drawCircle: false,  
   });  
   
+var sidebar = L.control.sidebar('sidebar', {
+    position: 'left'
+});
+
+map.addControl(sidebar);
+
+setTimeout(function () {
+    sidebar.open('home');  // Opens the 'home' pane of the sidebar
+}, 500);
+
+
