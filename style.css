@@ -6,6 +6,12 @@ html, body, #mapid {
     background-color: white !important;
     padding: 10px;
 }
+.legend-item:hover {
+  cursor: pointer;
+}
+.legend-item {
+  display: block; /* This ensures each item takes its own line */
+}
 
 .info.legend i {
     width: 18px;

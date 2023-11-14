@@ -1,37 +1,42 @@
+// Initialize map
+var map = L.map('mapid', {
+    center: [20, 5],
+    zoom: 3
+});
+
+// Base maps
 var baseMaps = {
     "OpenStreetMap": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19
-    }),
+    }).addTo(map),
     "World Imagery": L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
         opacity: 0.2  
     })
 };
 
+// Custom icon
 var svgIcon = L.icon({
     iconUrl: 'https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.io/main/poi.svg',
-    iconSize: [20, 20], // size of the icon, adjust as needed
-    iconAnchor: [0, 0], // point of the icon which will correspond to marker's location, adjust as needed
-    popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor, adjust as needed
+    iconSize: [20, 20],
+    iconAnchor: [0, 0],
+    popupAnchor: [0, 0]
 });
 
-var overlayMaps = {}; // Will hold your GeoJSON layers
+// Overlay Maps
+var overlayMaps = {};
 
-var map = L.map('mapid', {
-    layers: [baseMaps["World Imagery"]] // Add default layer
-}).setView([20, 5], 3);
-
-baseMaps.OpenStreetMap.addTo(map);        
-
+// Predefined colors for movies
 var predefinedColors = ['#642915', '#c7522a', '#e5c185', '#fbf2c4', '#74a892', '#008585', '#004343', '#ffff99',  '#d68a58'];
 
-var movieToIndex = {};  // Mapping of movie names to unique indices
-var uniqueIndex = 0;  // Counter for assigning unique indices
+// Movie to Color mapping
+var movieToColor = {};
+var movieToIndex = {};
+var uniqueIndex = 0;
 
 function getMovieIndex(movie) {
     if (!movieToIndex.hasOwnProperty(movie)) {
-        movieToIndex[movie] = uniqueIndex;
-        uniqueIndex++;
+        movieToIndex[movie] = uniqueIndex++;
     }
     return movieToIndex[movie];
 }
@@ -41,16 +46,53 @@ function getMovieColor(movie) {
     return predefinedColors[index % predefinedColors.length];
 }
 
+var currentFilteredMovie = null;
+
+function filterByMovie(movieName) {
+    if (currentFilteredMovie === movieName) {
+        // If the same movie is clicked again, reset the view
+        resetView();
+        return;
+    }
+
+    currentFilteredMovie = movieName;
+    var filteredFeatures = allData.features.filter(feature => 
+        feature.properties.Movie === movieName
+    );
+
+    geojsonLayer.clearLayers();
+    geojsonLayer.addData(filteredFeatures);
+
+    if (filteredFeatures.length > 0) {
+        var group = new L.featureGroup(filteredFeatures.map(feature => {
+            return L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]);
+        }));
+        var maxZoom = 10;
+        map.fitBounds(group.getBounds(), { maxZoom: maxZoom });
+    }
+}
+
+function resetView() {
+    currentFilteredMovie = null;
+    geojsonLayer.clearLayers();
+    geojsonLayer.addData(allData);
+    map.fitBounds(geojsonLayer.getBounds());
+}
+
+// Fetch movie climbs data
+var geojsonLayer;
+var allData;
+
 fetch('https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.io/main/movie_climbs.geojson')
     .then(response => response.json())
     .then(data => {
-        var movieToColor = {};
+        allData = data;
         for (var i = 0; i < data.features.length; i++) {
             var movie = data.features[i].properties.Movie;
             movieToColor[movie] = getMovieColor(movie);
         }    
 
-        var geojsonLayer = L.geoJSON(data, {
+        geojsonLayer = L.geoJSON(data, {
             pointToLayer: function (feature, latlng) {
                 return L.circleMarker(latlng, {
                     radius: 8,
@@ -70,30 +112,29 @@ fetch('https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.
                         <strong>Country:</strong> ${feature.properties.Country}<br/>
                     `);
                 }
-                map.on('moveend', function() {
-                    var center = map.getCenter();
-                    var zoom = map.getZoom();
-
-                    console.log('Center: ', center);
-                    console.log('Zoom level: ', zoom);
-                });             
             }
         }).addTo(map);
-        overlayMaps["Movie Climbs"] = geojsonLayer; // Add the layer to the overlayMaps object
+        overlayMaps["Movie Climbs"] = geojsonLayer;
+
+        // Legend
         var legend = L.control({position: 'bottomleft'});
-        
         legend.onAdd = function(map) {
             var div = L.DomUtil.create('div', 'info legend');
-            div.innerHTML = '<h4>Legend</h4>';
-            // Loop through movieToColor object to create legend items
+            div.innerHTML = '<h4>Interactive Legend</h4>';
             for (var movie in movieToColor) {
-                div.innerHTML += '<i style="background:' + movieToColor[movie] + '"></i> ' + movie + '<br>';
+                var span = L.DomUtil.create('span', 'legend-item', div);
+                span.innerHTML = movie;
+                span.style.backgroundColor = movieToColor[movie];
+                span.setAttribute('data-movie', movie);
+                L.DomEvent.on(span, 'click', function(e) {
+                    filterByMovie(e.target.getAttribute('data-movie'));
+                });
             }
             return div;
         };
         legend.addTo(map);
 
-        // Start the second fetch operation
+        // Fetch big wall climbs data
         return fetch('https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.io/main/big_wall_climbs.geojson');
     })
     .then(response => response.json())
@@ -111,38 +152,29 @@ fetch('https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.
                         <strong>Area:</strong> ${feature.properties.area}<br/>
                     `);
                 }
-                map.on('moveend', function() {
-                    var center = map.getCenter();
-                    var zoom = map.getZoom();
-
-                    console.log('Center: ', center);
-                    console.log('Zoom level: ', zoom);
-                });             
             }
         }).addTo(map);
-        overlayMaps["Big wall climbs over 100 m and 5.13 difficulty"] = geojsonLayer2; // Add the layer to the overlayMaps object
+        overlayMaps["Big wall climbs over 100 m and 5.13 difficulty"] = geojsonLayer2;
     })
     .then(() => {
-        // Add the layer control after both fetch operations have finished
         L.control.layers(baseMaps, overlayMaps).addTo(map);
-    
-        // Add the Leaflet Search Control
+
+        // Search control
         var searchControl = new L.Control.Search({
-            layer: L.layerGroup([overlayMaps["Movie Climbs"], overlayMaps["Big wall climbs over 100 m and 5.13 difficulty"]]), // Use overlayMaps to reference the layers
-            propertyName: 'Name', // The property name to search
+            layer: L.layerGroup([overlayMaps["Movie Climbs"], overlayMaps["Big wall climbs over 100 m and 5.13 difficulty"]]),
+            propertyName: 'Name',
             marker: false,
             moveToLocation: function(latlng, title, map) {
-                map.flyTo(latlng, 17); // Fly to the location
+                map.flyTo(latlng, 17);
             }
         });
-    
         searchControl.on('search:locationfound', function(e) {
-            e.layer.openPopup(); // Open popup if a location is found
+            e.layer.openPopup();
         });
-    
-        map.addControl(searchControl); // Add the control to the map
+        map.addControl(searchControl);
     });
 
+// Info popup
 var infoPopupContent = `
     <h2>Map Information</h2>
     <p>This map displays climbing routes and movies locations. The data is sourced from various climbing communities and movie databases.</p>
@@ -151,24 +183,21 @@ var infoPopupContent = `
 `;
 
 var infoPopup = L.popup()
-    .setLatLng([20, 5])  // Set the geographic position where the popup will be anchored
+    .setLatLng([20, 5])
     .setContent(infoPopupContent)
-    .openOn(map);  // Open the popup on the map object
+    .openOn(map);
 
-// add Leaflet-Geoman controls with some options to the map  
+// Leaflet-Geoman controls
 map.pm.addControls({  
     position: 'topleft',  
     drawCircle: false,  
-  });  
-  
+});
+
+// Sidebar control
 var sidebar = L.control.sidebar('sidebar', {
     position: 'left'
 });
-
 map.addControl(sidebar);
-
 setTimeout(function () {
-    sidebar.open('home');  // Opens the 'home' pane of the sidebar
+    sidebar.open('home');
 }, 500);
-
-
