@@ -27,7 +27,7 @@ var svgIcon = L.icon({
 var overlayMaps = {};
 
 // Predefined colors for movies
-var predefinedColors = ['#642915', '#c7522a', '#e5c185', '#fbf2c4', '#74a892', '#008585', '#004343', '#ffff99',  '#d68a58'];
+var predefinedColors = ['#336415', '#c7522a', '#e5c185', '#fbf2c4', '#74a892', '#008585', '#ce8ad8', '#ffff99',  '#d68a58'];
 
 // Movie to Color mapping
 var movieToColor = {};
@@ -79,6 +79,39 @@ function resetView() {
     map.fitBounds(geojsonLayer.getBounds());
 }
 
+// Function to fetch movie details from OMDb API
+function fetchMovieDetails(movieTitle) {
+    var apiKey = '6ca4ece0'; // Your OMDb API key
+    var url = `http://www.omdbapi.com/?t=${encodeURIComponent(movieTitle)}&apikey=${apiKey}`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (data.Response === "True") {
+                updateSidebar(data);
+            } else {
+                console.log('Movie not found:', data.Error);
+            }
+        })
+        .catch(error => console.log('Error fetching movie details:', error));
+}
+
+// Function to update the sidebar with movie details
+function updateSidebar(movieData) {
+    var sidebarContent = `
+        <h2>${movieData.Title}</h2>
+        <p><strong>Release Year:</strong> ${movieData.Year}</p>
+        <p><strong>Director:</strong> ${movieData.Director}</p>
+        <p><strong>Actors:</strong> ${movieData.Actors}</p>
+        <p><strong>Plot:</strong> ${movieData.Plot}</p>
+        <img src="${movieData.Poster}" alt="Movie Poster">
+    `;
+    document.getElementById('movie-details').innerHTML = sidebarContent;
+    sidebar.open('movie-details');
+}
+
+
+
 // Fetch movie climbs data
 var geojsonLayer;
 var allData;
@@ -103,6 +136,7 @@ fetch('https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.
                     fillOpacity: 0.9
                 });
             },
+
             onEachFeature: function (feature, layer) {
                 if (feature.properties) {
                     layer.bindPopup(`
@@ -114,7 +148,15 @@ fetch('https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.
                 }
             }
         }).addTo(map);
+
+        // Modify the click event for your GeoJSON layer
+        geojsonLayer.on('click', function(e) {
+            var clickedMovieTitle = e.layer.feature.properties.Movie;
+            fetchMovieDetails(clickedMovieTitle);
+        });
+        
         overlayMaps["Movie Climbs"] = geojsonLayer;
+
 
         // Legend
         var legend = L.control({position: 'bottomleft'});

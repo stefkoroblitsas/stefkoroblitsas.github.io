@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">      
         <link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css" />
         <link rel="stylesheet" href="../sidebar/sidebar.css">
-        <link rel="stylesheet" href="../coordinates/Control.Coordinates.css">
+         <!-- <link rel="stylesheet" href="../coordinates/Control.Coordinates.css">to be added later -->
        
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
         <script src="src\Control.Coordinates.js"></script>
@@ -18,7 +18,7 @@
         <script src="https://unpkg.com/leaflet-search"></script>
         <script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.min.js"></script> 
         <script src="../sidebar/sidebar.js"></script>
-        <script src="../coordinates/Control.Coordinates.js"></script>
+        <!-- <script src="../coordinates/Control.Coordinates.js"></script> to be added later -->
 
     </head>
 
@@ -28,8 +28,7 @@
     <body>
         <h1>Rock Climbing and Moutaineering</h1>        
         <script type="module" src="script.js"></script>
-        <script src="../coordinates/Control.Coordinates.js"></script>
-
+        <!-- <script src="../coordinates/Control.Coordinates.js"> </script> to be added later-->
         <div id="header">
             <img src="https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.io/main/earth-australia-o.svg" alt="Logo" width="60" height="60">
             <div id="clientLogo"></div>
@@ -44,6 +43,7 @@
                 <div class="sidebar-tabs">
                     <ul role="tablist">
                         <li><a href="#home" role="tab"><i class="fa fa-home"></i></a></li>
+                        <li><a href="#movie-details" role="tab"<i class="fa fa-film"></i></a></li>
                         <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
                     </ul>
                 </div>
@@ -82,6 +82,10 @@
                         </ul>
                         </p>
                     </div>
+                    <div class="sidebar-pane" id="movie-details">
+                        <h1 class="sidebar-header">Movie Details - OMDB<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                        <!-- Content will be dynamically added here -->
+                    </div>                   
                     <div class="sidebar-pane" id="settings">
                         <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
                         <p>Settings Pane Content</p>
