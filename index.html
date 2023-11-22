@@ -1,116 +1,206 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>SK Leaflet</title>
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-        <link rel="stylesheet" href="https://unpkg.com/leaflet-search/dist/leaflet-search.min.css" />
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">      
-        <link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css" />
-        <link rel="stylesheet" href="../sidebar/sidebar.css">
-         <!-- <link rel="stylesheet" href="../coordinates/Control.Coordinates.css">to be added later -->
-       
-        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-        <script src="src\Control.Coordinates.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"></script>
-        <script src="https://cesium.com/downloads/cesiumjs/releases/1.78/Build/Cesium/Cesium.js"></script>
-        <script src="https://unpkg.com/leaflet-search/dist/leaflet-search.min.js"></script>
-        <script src="https://unpkg.com/leaflet-search"></script>
-        <script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.min.js"></script> 
-        <script src="../sidebar/sidebar.js"></script>
-        <!-- <script src="../coordinates/Control.Coordinates.js"></script> to be added later -->
+  <head>
+    <title>SK Leaflet</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-search/dist/leaflet-search.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css"
+    />
+    <link rel="stylesheet" href="../sidebar/sidebar.css" />
+    <!-- <link rel="stylesheet" href="../coordinates/Control.Coordinates.css">to be added later -->
 
-    </head>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="src\Control.Coordinates.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"></script>
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.78/Build/Cesium/Cesium.js"></script>
+    <script src="https://unpkg.com/leaflet-search/dist/leaflet-search.min.js"></script>
+    <script src="https://unpkg.com/leaflet-search"></script>
+    <script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.min.js"></script>
+    <script src="../sidebar/sidebar.js"></script>
+    <!-- <script src="../coordinates/Control.Coordinates.js"></script> to be added later -->
+  </head>
 
+  <script type="module" src="script.js"></script>
+
+  <body>
     <script type="module" src="script.js"></script>
-    
+    <!-- <script src="../coordinates/Control.Coordinates.js"> </script> to be added later-->
+    <div id="header">
+      <div id="logo">
+        <img src="../assets/sk.png" alt="Logo" />
+      </div>
+      <span id="webmapName">
+        <label>  stefanos-koroblitsas</label>
+      </span>
+      <span id="webmapTitle">
+        <label>  climbing documentaries - a coded leaflet webmap example</label>
+      </span>
+    </div>
 
-    <body>
-        <h1>Rock Climbing and Moutaineering</h1>        
-        <script type="module" src="script.js"></script>
-        <!-- <script src="../coordinates/Control.Coordinates.js"> </script> to be added later-->
-        <div id="header">
-            <img src="https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.io/main/earth-australia-o.svg" alt="Logo" width="60" height="60">
-            <div id="clientLogo"></div>
-            <span id="webmapTitle">
-                <label>Climbing Documentaries - a coded leaflet webmap example</label>
-            </span>
-          </div>
-        
-        <div id="container" class="sidebar-map">
-            <div id="sidebar" class="sidebar collapsed">
-                <!-- Nav tabs -->
-                <div class="sidebar-tabs">
-                    <ul role="tablist">
-                        <li><a href="#home" role="tab"><i class="fa fa-home"></i></a></li>
-                        <li><a href="#movie-details" role="tab"<i class="fa fa-film"></i></a></li>
-                        <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
-                    </ul>
-                </div>
-            
-                <!-- Tab panes -->
-                <div class="sidebar-content">
-                    <div class="sidebar-pane" id="home">
-                        <h1 class="sidebar-header">Sidebar<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-                        <p><p>
-                            The map is built upon the <a href="https://leafletjs.com/" target="_blank">Leaflet.js library</a>, a leading open-source JavaScript library for mobile-friendly interactive maps. Its simplicity, performance, and usability make it a go-to solution for developers. The base maps utilized in this project are sourced from OpenStreetMap and World Imagery, providing a detailed and contrasting view of the terrains.
-                        </p>
-                        
-                        <h3>A variety of plugins enhance the map's functionality and user experience:</h3>
-                        
-                        <ul>
-                            <li>
-                                <strong>Leaflet Search Plugin:</strong>
-                                Enables users to easily search and zoom into specific points of interest on the map, making navigation intuitive and efficient.
-                            </li>
-                            <li>
-                                <strong>Leaflet Geoman Plugin:</strong>
-                                Provides drawing and editing functionalities, empowering users to interact with the map in a meaningful way.
-                            </li>
-                            <li>
-                                <strong>Leaflet Sidebar Plugin:</strong>
-                                Facilitates a clean and collapsible sidebar, housing extra information and settings without cluttering the map view.
-                            </li>
-                            <li>
-                                <strong>Chroma.js:</strong>
-                                Aids in generating a dynamic color scheme for different categories of points, enhancing the visual appeal and interpretability of the map.
-                            </li>
-                            <li>
-                                <strong>GeoJSON:</strong>
-                                The geographical data representing the climbing routes and movie locations is structured in GeoJSON format, a type of open standard format designed for representing simple geographical features, along with their non-spatial attributes.
-                            </li>
-                        </ul>
-                        </p>
-                    </div>
-                    <div class="sidebar-pane" id="movie-details">
-                        <h1 class="sidebar-header">Movie Details - OMDB<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-                        <!-- Content will be dynamically added here -->
-                    </div>                   
-                    <div class="sidebar-pane" id="settings">
-                        <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-                        <p>Settings Pane Content</p>
-                    </div>
-                </div>
-            </div>
-            <div id="legend"></div>
-            <div id="mapid" style="height: 850px;"></div>
+    <div id="container" class="sidebar-map">
+      <div id="sidebar" class="sidebar collapsed">
+        <!-- Nav tabs -->
+        <div class="sidebar-tabs">
+          <ul role="tablist">
+            <li>
+              <a href="#home" role="tab"><i class="fa fa-home"></i></a>
+            </li>
+            <li>
+              <a href="#movie-details" role="tab"><i class="fa fa-film"></i></a>
+            </li>
+            <li>
+              <a href="#settings" role="tab"><i class="fa fa-gear"></i></a>
+            </li>
+            <li>
+                <a href="#about-me" role="tab"><i class="fa fa-user-circle"></i></a>
+            </li>
+          </ul>
         </div>
 
+        <!-- Tab panes -->
+        <div class="sidebar-content">
+          <div class="sidebar-pane" id="home">
+            <h1 class="sidebar-header">
+              About this map<span class="sidebar-close"
+                ><i class="fa fa-caret-left"></i
+              ></span>
+            </h1>
+            <p>
+              The map is built upon the
+              <a href="https://leafletjs.com/" target="_blank"
+                >Leaflet.js library</a
+              >, a leading open-source JavaScript library for mobile-friendly
+              interactive maps. Its simplicity, performance, and usability make
+              it a go-to solution for developers.
+            </p>
+            <p>
+              The base maps utilized in this project are sourced from
+              OpenStreetMap and World Imagery, providing a detailed and
+              contrasting view of the terrains.
+            </p>
+
+            <h3>
+              A variety of plugins enhance the map's functionality and user
+              experience:
+            </h3>
+
+            <ul>
+              <li>
+                <strong>Leaflet Search Plugin:</strong>
+                Enables users to easily search and zoom into specific points of
+                interest on the map, making navigation intuitive and efficient.
+              </li>
+              <li>
+                <strong>Leaflet Geoman Plugin:</strong>
+                Provides drawing and editing functionalities, empowering users
+                to interact with the map in a meaningful way.
+              </li>
+              <li>
+                <strong>Leaflet Sidebar Plugin:</strong>
+                Facilitates a clean and collapsible sidebar, housing extra
+                information and settings without cluttering the map view.
+              </li>
+              <li>
+                <strong>Chroma.js:</strong>
+                Aids in generating a dynamic color scheme for different
+                categories of points, enhancing the visual appeal and
+                interpretability of the map.
+              </li>
+              <li>
+                <strong>GeoJSON:</strong>
+                The geographical data representing the climbing routes and movie
+                locations is structured in GeoJSON format, a type of open
+                standard format designed for representing simple geographical
+                features, along with their non-spatial attributes.
+              </li>
+            </ul>
+          </div>
+          <div class="sidebar-pane" id="movie-details">
+            <h1 class="sidebar-header">
+              Movie Details - OMDB<span class="sidebar-close"
+                ><i class="fa fa-caret-left"></i
+              ></span>
+            </h1>
+            <!-- Content will be dynamically added here -->
+          </div>
+          <div class="sidebar-pane" id="about-me">
+            <h1 class="sidebar-header">
+              About me<span class="sidebar-close"
+                ><i class="fa fa-caret-left"></i
+              ></span>
+            </h1>
+
+            <p>
+                Hi Im Stef, <br> linkedin:  
+                <a href="https://www.linkedin.com/in/stefanos-koroblitsas/"
+                target="_blank"
+                draggable="false"
+              >
+              <i class="fa fa-linkedin"></i>
+          
+                  <div id="logoFooter"></div>
+              </a> 
+                I am a Geospatial Scientist with over 13 years of experience, geospatial practice lead at Senversa and part of the Digital Services Group. 
+                My work involves providing practical and effective geospatial solutions across various sectors, including environmental protection, waste engineering, transportation.
+            </p>
+            <p>
+                My role involves designing web-based GIS data portals, creating field data collection solutions, and developing GIS mapping solutions, dashboards, and applications. 
+                These tools are custom-made to fit the specific needs of our clients and the type of data they need to see throughout their projects.
+            </p>
+            <p>
+                Skills and experience: <br>
+                <ul>
+                    <li>Skilled with free and open-source software such as QGIS, PostGIS, Geoserver, PostgreSQL.</li>
+                    <li>Experienced in using ESRI suite software (ArcGIS Pro, Desktop, ArcGIS Online, Portal), and Autodesk (CAD, Civil 3D).</li>
+                    <li>Skilled in enterprise deployment and systems administration.</li>
+                    <li>Database design, deployment and administration.  </li>
+                    <li>Creating innovative and effective spatial products.</li>
+                    <li>Conducting consultations within and outside the organization.</li>
+                    <li>Managing projects from start to finish.</li>
+                    <li>Designing and creating maps and data for web use.</li>
+                    <li>Mentoring teams and managing schedules.</li>
+                    <li>Focusing on analytics and data-driven decisions.</li>
+                    <li>Automating routine tasks.</li>
+                    <li>Standardizing processes and workflows.</li>
+                    <li>Landfill design and volume estimates.</li>
+                    <li>Modeling groundwater and contaminants.</li>
+                    <li>Advanced GIS modeling and analysis.</li>
+                </ul>
+                <br>
+                I am committed to applying my extensive experience to develop practical solutions in geospatial sciences.
+            </p>
 
 
-<!--         <div class="footer">
-            <a href="https://www.linkedin.com/in/stefanos-koroblitsas/"
-              target="_blank"
-              draggable="false"
-            >
-            <i class="fa fa-linkedin"></i>
-        
-                <div id="logoFooter"></div>
-            </a>
+          </div>
+          <div class="sidebar-pane" id="settings">
+            <h1 class="sidebar-header">
+              Settings<span class="sidebar-close"
+                ><i class="fa fa-caret-left"></i
+              ></span>
+            </h1>
+            <p>Settings Pane Content</p>
+          </div>
+        </div>
+      </div>
+      <div id="legend"></div>
+      <div id="mapid" style="height: 850px"></div>
+    </div>
+
+    <!--         <div class="footer">
+
           </div> -->
-    </body>
-    
+  </body>
 </html>
-
-
-

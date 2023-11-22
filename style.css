@@ -1,124 +1,162 @@
-html, body, #mapid {
-    width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;
-}
-
-#legend, .info.legend {
-    background-color: rgb(240, 230, 230) !important;
-    padding: 10px;
-    color:#000000;
-}
-.legend-item:hover {
-  cursor: pointer;
-}
-.legend-item {
-  display: block; /* This ensures each item takes its own line */
-}
-
-.info.legend i {
-    width: 18px;
-    height: 18px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    float: left;
-    margin-right: 8px;
-    opacity: 0.7;
-}
-
-
-.popup-content {
-    font-size: 14px;
-}
-
-#webmapTitle {
-    font-size: 2.0em;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-    color: white;
-    text-shadow: 1px 1px rgb(28, 12, 12);
+/* General Styles */
+html,
+body,
+#mapid {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 #header {
-    position: absolute;
-    z-index: 4;
-    top: 0;
-    left: 0px;
-    right: 0;
-    height: 75px;
-    background-color: #1f5088;
-    box-shadow: rgb(0 0 0 / 50%) 2px 0 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1em;
-  }
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 65px;
+  background-color: #fefefe;
+  box-shadow: rgb(0 0 0 / 50%) 2px 0 5px;
+  display: flex;
+  align-items: center;
+  padding: 0 1em;
+  border-bottom: 15px solid #424b55;
+}
 
+#logo,
+#webmapTitle {
+  flex: 0 0 auto;
+}
+
+#logo {
+  text-align: left;
+}
+
+#logo img {
+  width: 60px;
+  height: 60px;
+}
+
+#webmapName {
+  position: fixed;
+  right: 20px;
+  font-weight: 900;
+  font-size: 1.5em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande';
+  font-weight:600;
+  color: #606060;
+}
+
+
+#webmapTitle {
+  position: fixed;
+  left: 120px;
+  font-size: 1.5em;
+  margin-right: 360px;
+  white-space: normal;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande';
+
+  color: #808080;
+}
+
+/* Legend and Info Styles */
+#legend,
+.info.legend {
+  background-color: rgb(240, 230, 230) !important;
+  padding: 10px;
+  color: #000000;
+}
+
+.legend-item {
+  display: block; /* Each item on its own line */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.info.legend i {
+  width: 18px;
+  height: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  float: left;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+
+/* Popup Content Styles */
+.popup-content {
+  font-size: 14px;
+}
+
+/* Footer Styles */
 .footer {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 50px;
-    z-index: 3;
-    background-color: #034694;
-    color: #fff;
-    font-family: "Lato", sans-serif;
-    font-size: 13px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .footer i {
-    padding: 4px;
-    cursor: pointer;
-  }
-  
-  .footer:hover i:hover {
-    color: #7ab236;
-  }
-  
-  .footer a {
-    color: #fff;
-    cursor: pointer;
-    text-decoration: none;
-  }
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 50px;
+  z-index: 3;
+  background-color: #034694;
+  color: #fff;
+  font-family: "Lato", sans-serif;
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .leaflet-control-layers {
-    top: 10px; /* Adjusts the distance from the top */
-    right: 80px; /* Adjusts the distance from the right */
-    position: flex;
-  }
+.footer i {
+  padding: 4px;
+  cursor: pointer;
+}
 
-  #container {
-    display: flex;
-    height: 100vh; /* Ensure it takes up the full viewport height */
-    width: 100vw; /* Ensure it takes up the full viewport width */
-    overflow: hidden;
-  }
+.footer:hover i:hover {
+  color: #7ab236;
+}
 
+.footer a {
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Leaflet Control Layers Styles */
+.leaflet-control-layers {
+  top: 10px;
+  right: 80px;
+  position: flex;
+}
+
+/* Container Styles */
+#container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* Mapid Styles */
+#mapid {
+  position: absolute;
+  top: 80px;
+  bottom: 0;
+  left: 40px;
+  right: 0;
+  transition: left 500ms;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
   #mapid {
-    position: absolute;
-    top: 80px;
-    bottom: 0;
-    left: 40px;  /* Adjusted to align with the collapsed sidebar */
-    right: 0;
-    transition: left 500ms;  /* Smooth transition when the sidebar state changes */
+    left: 450px;
   }
 
-  @media (min-width: 768px) {
-    #mapid {
-        left: 450px;  /* Adjusted to align with the expanded sidebar */
-    }
-
-    .sidebar.collapsed ~ #mapid {
-        left: 50px;  /* Adjusted to align with the collapsed sidebar */
-    }
+  .sidebar.collapsed ~ #mapid {
+    left: 40px;
   }
-
-
-
-  
-  
+}
