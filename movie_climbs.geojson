@@ -1,499 +1,633 @@
 {
-    "type":"FeatureCollection",
-    "features":[
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"14 peaks",
-             "Name":"Everest",
-             "Height_m":"8,849",
-             "Country":"Nepal",
-             "Date":"29-May-53",
-             "Total_ascents":5656,
-             "Total_deaths":223
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                86.9253,
-                27.9881
-             ]
-          }
+   "type": "FeatureCollection",
+   "name": "movie_climbs",
+   "features": [
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 1,
+         "movie": "The conquest of Everest",
+         "name": "Khumbu Icefall, Mt Everest",
+         "height_m": 5806,
+         "country": "Nepal",
+         "date": null,
+         "watched": false
        },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"14 peaks",
-             "Name":"K2",
-             "Height_m":"8,611",
-             "Country":"Pakistan",
-             "Date":"31-Jul-54",
-             "Total_ascents":306,
-             "Total_deaths":81
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                76.5133,
-                35.8825
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"14 peaks",
-             "Name":"Kangchenjunga",
-             "Height_m":"8,586",
-             "Country":"Nepal",
-             "Date":"25-May-55",
-             "Total_ascents":283,
-             "Total_deaths":40
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                88.1476,
-                27.7025
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"14 peaks",
-             "Name":"Lhotse",
-             "Height_m":"8,516",
-             "Country":"Nepal",
-             "Date":"18-May-56",
-             "Total_ascents":461,
-             "Total_deaths":13
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                86.9333,
-                27.9617
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"14 peaks",
-             "Name":"Makalu",
-             "Height_m":"8,485",
-             "Country":"Nepal",
-             "Date":"15-May-55",
-             "Total_ascents":361,
-             "Total_deaths":31
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                87.0889,
-                27.8899
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"14 peaks",
-             "Name":"Cho Oyu",
-             "Height_m":"8,188",
-             "Country":"Nepal",
-             "Date":"19-Oct-54",
-             "Total_ascents":3138,
-             "Total_deaths":44
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                86.6608,
-                28.0942
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"14 peaks",
-             "Name":"Dhaulagiri I",
-             "Height_m":"8,167",
-             "Country":"Nepal",
-             "Date":"13-May-60",
-             "Total_ascents":448,
-             "Total_deaths":69
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                83.4878,
-                28.6975
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"14 peaks",
-             "Name":"Manaslu",
-             "Height_m":"8,163",
-             "Country":"Nepal",
-             "Date":"9-May-56",
-             "Total_ascents":661,
-             "Total_deaths":65
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                84.5598,
-                28.5475
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"14 peaks",
-             "Name":"Nanga Parbat",
-             "Height_m":"8,125",
-             "Country":"Pakistan",
-             "Date":"3-Jul-53",
-             "Total_ascents":335,
-             "Total_deaths":68
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                74.5892,
-                35.2375
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"14 peaks",
-             "Name":"Annapurna I",
-             "Height_m":"8,091",
-             "Country":"Nepal",
-             "Date":"3-Jun-50",
-             "Total_ascents":191,
-             "Total_deaths":61
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                83.8203,
-                28.5961
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"14 peaks",
-             "Name":"Gasherbrum I",
-             "Height_m":"8,080",
-             "Country":"Pakistan",
-             "Date":"5-Jul-58",
-             "Total_ascents":334,
-             "Total_deaths":29
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                76.6961,
-                35.7242
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"14 peaks",
-             "Name":"Broad Peak",
-             "Height_m":"8,051",
-             "Country":"Pakistan",
-             "Date":"9-Jun-57",
-             "Total_ascents":404,
-             "Total_deaths":21
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                76.565,
-                35.81
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"14 peaks",
-             "Name":"Gasherbrum II",
-             "Height_m":"8,034",
-             "Country":"Pakistan",
-             "Date":"7-Jul-56",
-             "Total_ascents":930,
-             "Total_deaths":21
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                76.6533,
-                35.7583
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"14 peaks",
-             "Name":"Shishapangma",
-             "Height_m":"8,027",
-             "Country":"China",
-             "Date":"2-May-64",
-             "Total_ascents":302,
-             "Total_deaths":25
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                85.7794,
-                28.3525
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"Free Solo",
-             "Name":"El Capitan",
-             "Height_m":"2,308",
-             "Country":"USA",
-             "Date":"",
-             "Total_ascents":"",
-             "Total_deaths":""
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                -119.6395,
-                37.734
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"The Dawn Wall",
-             "Name":"El Capitan",
-             "Height_m":"2,308",
-             "Country":"USA",
-             "Date":"",
-             "Total_ascents":"",
-             "Total_deaths":""
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                -119.636,
-                37.731
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"Meru",
-             "Name":"Meru Peak",
-             "Height_m":"6,660",
-             "Country":"India",
-             "Date":"",
-             "Total_ascents":"",
-             "Total_deaths":""
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                79.5842,
-                30.8861
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"The last tepui",
-             "Name":"Wei-Assipu-Tepui",
-             "Height_m":"2,400",
-             "Country":"Guyana",
-             "Date":"",
-             "Total_ascents":"",
-             "Total_deaths":""
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                -60.7333,
-                5.3833
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"Touching the Void",
-             "Name":"Siula Grande",
-             "Height_m":"6,344",
-             "Country":"Peru",
-             "Date":"",
-             "Total_ascents":"",
-             "Total_deaths":""
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                -76.6385,
-                -10.2406
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"Silence",
-             "Name":"Flatanger cave",
-             "Height_m":45,
-             "Country":"Norway",
-             "Date":"",
-             "Total_ascents":"",
-             "Total_deaths":""
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                10.621,
-                64.5012
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"The Alpinist",
-             "Name":"Mount Tuzo",
-             "Height_m":"3,248",
-             "Country":"Canada",
-             "Date":"",
-             "Total_ascents":"",
-             "Total_deaths":""
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                -116.2755,
-                51.3289
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"The Alpinist",
-             "Name":"Mount Robson",
-             "Height_m":"3,954",
-             "Country":"Canada",
-             "Date":"",
-             "Total_ascents":"",
-             "Total_deaths":""
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                -119.1565,
-                53.1106
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"The Alpinist",
-             "Name":"Torre Egger ",
-             "Height_m":"2,685",
-             "Country":"Argentina",
-             "Date":"",
-             "Total_ascents":"",
-             "Total_deaths":""
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                -73.0433,
-                -49.2713
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"The Alpinist",
-             "Name":"Ha Ling Peak ",
-             "Height_m":"2,407",
-             "Country":"Canada",
-             "Date":"",
-             "Total_ascents":"",
-             "Total_deaths":""
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                -115.4028,
-                51.0631
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"The Alpinist",
-             "Name":"Mount Slesse ",
-             "Height_m":"2,439",
-             "Country":"Canada",
-             "Date":"",
-             "Total_ascents":"",
-             "Total_deaths":""
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                -121.5872,
-                49.0794
-             ]
-          }
-       },
-       {
-          "type":"Feature",
-          "properties":{
-             "Movie":"The Alpinist",
-             "Name":"Mendenhall Towers ",
-             "Height_m":"2,106",
-             "Country":"USA",
-             "Date":"",
-             "Total_ascents":"",
-             "Total_deaths":""
-          },
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                -134.5866,
-                58.5028
-             ]
-          }
+       "geometry": {
+         "type": "MultiPoint",
+         "coordinates": [[86.861647373696456, 27.99739101292662]]
        }
-    ]
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 2,
+         "movie": "The conquest of Everest",
+         "name": "Camp I, Mt Everest",
+         "height_m": 6055,
+         "country": "Nepal",
+         "date": null,
+         "watched": false
+       },
+       "geometry": {
+         "type": "MultiPoint",
+         "coordinates": [[86.87630123148999, 27.987498937433873]]
+       }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 3,
+         "movie": "The conquest of Everest",
+         "name": "Camp 2, Mt Everest",
+         "height_m": 6500,
+         "country": "Nepal",
+         "date": null,
+         "watched": false
+       },
+       "geometry": {
+         "type": "MultiPoint",
+         "coordinates": [[86.891262428353429, 27.982173042409929]]
+       }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 4,
+         "movie": "The conquest of Everest",
+         "name": "Camp 3, Mt Everest",
+         "height_m": 7060,
+         "country": "Nepal",
+         "date": null,
+         "watched": false
+       },
+       "geometry": {
+         "type": "MultiPoint",
+         "coordinates": [[86.915532163466622, 27.973063312579562]]
+       }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 5,
+         "movie": "The conquest of Everest",
+         "name": "Camp 4, Mt Everest",
+         "height_m": 7900,
+         "country": "Nepal",
+         "date": null,
+         "watched": false
+       },
+       "geometry": {
+         "type": "MultiPoint",
+         "coordinates": [[86.930000162520713, 27.973584136372772]]
+       }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 6,
+         "movie": "The conquest of Everest",
+         "name": "Summit, Mt Everest",
+         "height_m": 8849,
+         "country": "Nepal",
+         "date": null,
+         "watched": false
+       },
+       "geometry": {
+         "type": "MultiPoint",
+         "coordinates": [[86.924974700070862, 27.988119597092712]]
+       }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 7,
+         "movie": "King Lines",
+         "name": "Kukenan Tepui",
+         "height_m": 2680,
+         "country": "Venezuela",
+         "date": null,
+         "watched": false
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[-60.767, 5.1805]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 8,
+         "movie": "King Lines",
+         "name": "Moonlight Buttress",
+         "height_m": 364,
+         "country": "USA",
+         "date": null,
+         "watched": false
+       },
+       "geometry": {
+         "type": "MultiPoint",
+         "coordinates": [[-112.9485, 37.2095]]
+       }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 9,
+         "movie": "King Lines",
+         "name": "Montagne de Céüse",
+         "height_m": 2016,
+         "country": "France",
+         "date": null,
+         "watched": false
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[5.9275, 44.5167]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 10,
+         "movie": "King Lines",
+         "name": "Bishop, California",
+         "height_m": 1265,
+         "country": "USA",
+         "date": null,
+         "watched": false
+       },
+       "geometry": {
+         "type": "MultiPoint",
+         "coordinates": [[-118.5758, 37.3283]]
+       }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 11,
+         "movie": "King Lines",
+         "name": "Clark Mountain",
+         "height_m": 2418,
+         "country": "USA",
+         "date": null,
+         "watched": false
+       },
+       "geometry": {
+         "type": "MultiPoint",
+         "coordinates": [[-115.5159, 35.5103]]
+       }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 12,
+         "movie": "King Lines",
+         "name": "Es Pontas - deep water climb",
+         "height_m": 20,
+         "country": "Spain",
+         "date": null,
+         "watched": false
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[3.1193, 39.3081]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 13,
+         "movie": "The First Ascent",
+         "name": "Redgarden Wall Eldorado Canyon",
+         "height_m": 1844,
+         "country": "USA",
+         "date": null,
+         "watched": false
+       },
+       "geometry": {
+         "type": "MultiPoint",
+         "coordinates": [[-105.2905, 39.9319]]
+       }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 14,
+         "movie": "Alé",
+         "name": "Fosso dell'Eremo",
+         "height_m": 30,
+         "country": "Italy",
+         "date": null,
+         "watched": false
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[13.5174, 42.2124]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 15,
+         "movie": "Alé",
+         "name": "Meteora, Kalambaka",
+         "height_m": 320,
+         "country": "Greece",
+         "date": null,
+         "watched": false
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[21.6306, 39.7217]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 16,
+         "movie": "Alé",
+         "name": "Frosolone, Apennines",
+         "height_m": 30,
+         "country": "Italy",
+         "date": null,
+         "watched": false
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[14.4833, 41.5667]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 17,
+         "movie": "The Beckoning Silence",
+         "name": "Eiger",
+         "height_m": 3967,
+         "country": "Switzerland",
+         "date": null,
+         "watched": false
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[7.9614, 46.5775]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 18,
+         "movie": "The conquest of Everest",
+         "name": "Base Camp, Mt Everest",
+         "height_m": 5334,
+         "country": "Nepal",
+         "date": null,
+         "watched": false
+       },
+       "geometry": {
+         "type": "MultiPoint",
+         "coordinates": [[86.852859350913562, 28.002254666043207]]
+       }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 19,
+         "movie": "Touching the Void",
+         "name": "Siula Grande",
+         "height_m": null,
+         "country": "Peru",
+         "date": null,
+         "watched": null
+       },
+       "geometry": {
+         "type": "MultiPoint",
+         "coordinates": [[-76.6385, -10.2406]]
+       }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 20,
+         "movie": "Silence",
+         "name": "Flatanger cave",
+         "height_m": null,
+         "country": "Norway",
+         "date": null,
+         "watched": null
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[10.621, 64.5012]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 21,
+         "movie": "14 peaks",
+         "name": "Everest",
+         "height_m": null,
+         "country": "Nepal",
+         "date": null,
+         "watched": true
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[86.9253, 27.9881]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 22,
+         "movie": "14 peaks",
+         "name": "K2",
+         "height_m": null,
+         "country": "Pakistan",
+         "date": null,
+         "watched": true
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[76.5133, 35.8825]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 23,
+         "movie": "14 peaks",
+         "name": "Kangchenjunga",
+         "height_m": null,
+         "country": "Nepal",
+         "date": null,
+         "watched": true
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[88.1476, 27.7025]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 24,
+         "movie": "14 peaks",
+         "name": "Lhotse",
+         "height_m": null,
+         "country": "Nepal",
+         "date": null,
+         "watched": true
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[86.9333, 27.9617]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 25,
+         "movie": "14 peaks",
+         "name": "Makalu",
+         "height_m": null,
+         "country": "Nepal",
+         "date": null,
+         "watched": true
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[87.0889, 27.8899]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 26,
+         "movie": "14 peaks",
+         "name": "Cho Oyu",
+         "height_m": null,
+         "country": "Nepal",
+         "date": null,
+         "watched": true
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[86.6608, 28.0942]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 27,
+         "movie": "14 peaks",
+         "name": "Dhaulagiri I",
+         "height_m": null,
+         "country": "Nepal",
+         "date": null,
+         "watched": true
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[83.4878, 28.6975]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 28,
+         "movie": "14 peaks",
+         "name": "Manaslu",
+         "height_m": null,
+         "country": "Nepal",
+         "date": null,
+         "watched": true
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[84.5598, 28.5475]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 29,
+         "movie": "14 peaks",
+         "name": "Nanga Parbat",
+         "height_m": null,
+         "country": "Pakistan",
+         "date": null,
+         "watched": true
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[74.5892, 35.2375]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 30,
+         "movie": "14 peaks",
+         "name": "Annapurna I",
+         "height_m": null,
+         "country": "Nepal",
+         "date": null,
+         "watched": true
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[83.8203, 28.5961]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 31,
+         "movie": "14 peaks",
+         "name": "Gasherbrum I",
+         "height_m": null,
+         "country": "Pakistan",
+         "date": null,
+         "watched": true
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[76.6961, 35.7242]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 32,
+         "movie": "14 peaks",
+         "name": "Broad Peak",
+         "height_m": null,
+         "country": "Pakistan",
+         "date": null,
+         "watched": true
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[76.565, 35.81]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 33,
+         "movie": "14 peaks",
+         "name": "Gasherbrum II",
+         "height_m": null,
+         "country": "Pakistan",
+         "date": null,
+         "watched": true
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[76.6533, 35.7583]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 34,
+         "movie": "14 peaks",
+         "name": "Shishapangma",
+         "height_m": null,
+         "country": "China",
+         "date": null,
+         "watched": true
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[85.7794, 28.3525]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 35,
+         "movie": "Free Solo",
+         "name": "El Capitan",
+         "height_m": null,
+         "country": "USA",
+         "date": null,
+         "watched": true
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[-119.6395, 37.734]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 36,
+         "movie": "The Dawn Wall",
+         "name": "El Capitan",
+         "height_m": null,
+         "country": "USA",
+         "date": null,
+         "watched": true
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[-119.636, 37.731]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 37,
+         "movie": "Meru",
+         "name": "Meru Peak",
+         "height_m": null,
+         "country": "India",
+         "date": null,
+         "watched": true
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[79.5842, 30.8861]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 38,
+         "movie": "The last tepui",
+         "name": "Wei-Assipu-Tepui",
+         "height_m": null,
+         "country": "Guyana",
+         "date": null,
+         "watched": true
+       },
+       "geometry": { "type": "MultiPoint", "coordinates": [[-60.7333, 5.3833]] }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 39,
+         "movie": "The Alpinist",
+         "name": "Mount Tuzo",
+         "height_m": null,
+         "country": "Canada",
+         "date": null,
+         "watched": true
+       },
+       "geometry": {
+         "type": "MultiPoint",
+         "coordinates": [[-116.2755, 51.3289]]
+       }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 40,
+         "movie": "The Alpinist",
+         "name": "Mount Robson",
+         "height_m": null,
+         "country": "Canada",
+         "date": null,
+         "watched": true
+       },
+       "geometry": {
+         "type": "MultiPoint",
+         "coordinates": [[-119.1565, 53.1106]]
+       }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 41,
+         "movie": "The Alpinist",
+         "name": "Torre Egger ",
+         "height_m": null,
+         "country": "Argentina",
+         "date": null,
+         "watched": true
+       },
+       "geometry": {
+         "type": "MultiPoint",
+         "coordinates": [[-73.0433, -49.2713]]
+       }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 42,
+         "movie": "The Alpinist",
+         "name": "Ha Ling Peak ",
+         "height_m": null,
+         "country": "Canada",
+         "date": null,
+         "watched": true
+       },
+       "geometry": {
+         "type": "MultiPoint",
+         "coordinates": [[-115.4028, 51.0631]]
+       }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 43,
+         "movie": "The Alpinist",
+         "name": "Mount Slesse ",
+         "height_m": null,
+         "country": "Canada",
+         "date": null,
+         "watched": true
+       },
+       "geometry": {
+         "type": "MultiPoint",
+         "coordinates": [[-121.5872, 49.0794]]
+       }
+     },
+     {
+       "type": "Feature",
+       "properties": {
+         "id": 44,
+         "movie": "The Alpinist",
+         "name": "Mendenhall Towers ",
+         "height_m": null,
+         "country": "USA",
+         "date": null,
+         "watched": true
+       },
+       "geometry": {
+         "type": "MultiPoint",
+         "coordinates": [[-134.5866, 58.5028]]
+       }
+     }
+   ]
  }
+ 
