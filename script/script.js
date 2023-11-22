@@ -62,7 +62,7 @@ fetch('https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.
 
     geojsonLayer = L.geoJSON(data, {
       pointToLayer: function (feature, latlng) {
-        var movie = feature.properties.Movie;
+        var movie = feature.properties.movie;
         var style = movieStyles[movie] || {
           fillColor: '#000000', // Default fill color if movie not found in styles
           color: '#ffffff',
@@ -80,17 +80,18 @@ fetch('https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.
       onEachFeature: function (feature, layer) {
         if (feature.properties) {
           layer.bindPopup(`
-            <strong>Movie:</strong> ${feature.properties.Movie}<br/>
-            <strong>Name:</strong> ${feature.properties.Name}<br/>
-            <strong>Height (m):</strong> ${feature.properties.Height_m}<br/>
-            <strong>Country:</strong> ${feature.properties.Country}<br/>
+            <strong>Movie:</strong> ${feature.properties.movie}<br/>
+            <strong>Name:</strong> ${feature.properties.name}<br/>
+            <strong>Height (m):</strong> ${feature.properties.height_m}<br/>
+            <strong>Country:</strong> ${feature.properties.country}<br/>
+            <strong>Watched?:</strong> ${feature.properties.watched}<br/>
           `);
         }
       }
     }).addTo(map);
 
     geojsonLayer.on('click', function (e) {
-      var clickedMovieTitle = e.layer.feature.properties.Movie;
+      var clickedMovieTitle = e.layer.feature.properties.movie;
       fetchMovieDetails(clickedMovieTitle);
     });
 
@@ -212,7 +213,7 @@ function updateSidebar(movieData) {
 
 function filterByMovie(movieName) {
   var filteredFeatures = allData.features.filter(
-    feature => feature.properties.Movie === movieName
+    feature => feature.properties.movie === movieName
   );
  
   geojsonLayer.clearLayers();
