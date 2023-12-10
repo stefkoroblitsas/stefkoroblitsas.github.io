@@ -17,7 +17,15 @@ var baseMaps = {
     {
       attribution:
         'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
-      opacity: 0.2
+      opacity: 0.5
+    }
+    
+  ),
+  'Open Topo': L.tileLayer(
+    'https://a.tile.opentopomap.org/{z}/{x}/{y}.png',
+    {
+      attribution:
+      'Map data &copy; OpenTopoMap contributors' ,
     }
   )
 };
@@ -36,20 +44,23 @@ var overlayMaps = {};
 // New movie styles
 const movieStyles = {
   '14 peaks': { fillColor: '#db1e2a', color: '#ffffff', weight: 1 },
-  'The Alpinist': { fillColor: '#a4de11', color: '#ffffff', weight: 1 },
-  'Free Solo': { fillColor: '#dccb5b', color: '#ffffff', weight: 1 },
-  'The last tepui': { fillColor: '#e77979', color: '#ffffff', weight: 1 },
-  'The Dawn Wall': { fillColor: '#a92fd6', color: '#ffffff', weight: 1 },
-  'Meru': { fillColor: '#2e46d0', color: '#ffffff', weight: 1 },
-  'King Lines': { fillColor: '#569ace', color: '#ffffff', weight: 1 },
-  'Silence': { fillColor: '#89e963', color: '#ffffff', weight: 1 },
-  'The Beckoning Silence': { fillColor: '#77ef89', color: '#ffffff', weight: 1 },
-  'The conquest of Everest': { fillColor: '#6af0f0', color: '#ffffff', weight: 1 },
-  'The First Ascent': { fillColor: '#8a63e5', color: '#ffffff', weight: 1 },
-  'Touching the Void': { fillColor: '#dd2a74', color: '#ffffff', weight: 1 },
-  'Alé': { fillColor: '#3deda1', color: '#ffffff', weight: 1 },
+  'The Alpinist': { fillColor: '#6B8E23', color: '#ffffff', weight: 1 },
+  'Free Solo': { fillColor: '#FF8C00', color: '#ffffff', weight: 1 },
+  'The last tepui': { fillColor: '#FF6347', color: '#ffffff', weight: 1 },
+  'The Dawn Wall': { fillColor: '#FF9093', color: '#ffffff', weight: 1 },
+  'Meru': { fillColor: '#1E90FF', color: '#ffffff', weight: 1 },
+  'King Lines': { fillColor: '#4682B4', color: '#ffffff', weight: 1 },
+  'Silence': { fillColor: '#398B22', color: '#ffffff', weight: 1 },
+  'The Beckoning Silence': { fillColor: '#fefefe', color: '#ffffff', weight: 1 },
+  'The conquest of Everest': { fillColor: '#20B2AA', color: '#ffffff', weight: 1 },
+  'The First Ascent': { fillColor: '#9932CC', color: '#ffffff', weight: 1 },
+  'Touching the Void': { fillColor: '#C80585', color: '#ffffff', weight: 1 },
+  'Alé': { fillColor: '#008080', color: '#ffffff', weight: 1 },
   // Continue adding other movies as needed
 };
+
+var currentFilteredMovie = null; 
+var lastClickedMovie = null;
 
 // Fetch movie climbs data
 var geojsonLayer;
@@ -99,15 +110,24 @@ fetch('https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.
 
     var legend = L.control({ position: 'bottomleft' });
     legend.onAdd = function (map) {
+      console.log("Adding LayerTreeControl to the map");
       var div = L.DomUtil.create('div', 'info legend');
       div.innerHTML = '<h4>Interactive Legend</h4>';
       for (var movie in movieStyles) {
         var span = L.DomUtil.create('span', 'legend-item', div);
         span.innerHTML = movie;
         span.style.backgroundColor = movieStyles[movie].fillColor;
-        span.setAttribute('data-movie', movie);
+        span.setAttribute('data-movie', movie);      
         L.DomEvent.on(span, 'click', function (e) {
-          filterByMovie(e.target.getAttribute('data-movie'));
+          var clickedMovie = e.target.getAttribute('data-movie');
+          if (lastClickedMovie === clickedMovie) {
+            // If the same movie is clicked twice, reset the view
+            resetView();
+          } else {
+            // Otherwise, filter by the clicked movie
+            filterByMovie(clickedMovie);
+          }
+          lastClickedMovie = clickedMovie; // Update the last clicked movie
         });
       }
       return div;
@@ -132,11 +152,11 @@ fetch('https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.
           `);
         }
       }
-    }).addTo(map);
+    })
     overlayMaps['Big wall climbs over 100 m and 5.13 difficulty'] = geojsonLayer2;
   })
   .then(() => {
-    L.control.layers(baseMaps, overlayMaps).addTo(map);
+    L.control.layers(baseMaps, overlayMaps);
 
     var searchControl = new L.Control.Search({
       layer: L.layerGroup([
@@ -153,7 +173,9 @@ fetch('https://raw.githubusercontent.com/stefkoroblitsas/stefkoroblitsas.github.
       e.layer.openPopup();
     });
     map.addControl(searchControl);
-  });
+    addLayerControls();
+  })
+  .catch(error => console.error('Error loading GeoJSON data:', error));
 
 var infoPopupContent = `
   <h2>Map Information</h2>
@@ -237,5 +259,87 @@ function resetView() {
   currentFilteredMovie = null;
   geojsonLayer.clearLayers();
   geojsonLayer.addData(allData);
-  map.fitBounds(geojsonLayer.getBounds());
+  map.setView([20, 5], 3); // Reset map to specific center and zoom level
 }
+
+var layers = [
+  {
+    layer: baseMaps['OpenStreetMap'],
+    name: 'OpenStreetMap',
+    type: 'base'
+  },
+  {
+    layer: baseMaps['World Imagery'],
+    name: 'World Imagery',
+    type: 'base'
+  },
+  {
+    layer: overlayMaps['Movie Climbs'],
+    name: 'Movie Climbs',
+    type: 'overlay'
+  },
+  {
+    layer: overlayMaps['Big wall climbs over 100 m and 5.13 difficulty'],
+    name: 'Big Wall Climbs',
+    type: 'overlay'
+  }
+  // Add more layers as needed
+];
+
+var allLayers = [
+  ...Object.entries(baseMaps).map(([name, layer]) => ({ name, layer, type: 'base' })),
+  ...Object.entries(overlayMaps).map(([name, layer]) => ({ name, layer, type: 'overlay' }))
+];
+
+function addLayerControls() {
+  var layerControlContainer = document.querySelector('.custom-layer-control');
+
+  // Add base maps (as radio buttons) to the control panel
+  Object.entries(baseMaps).forEach(([name, layer]) => {
+    var radio = document.createElement('input');
+    radio.type = 'radio';
+    radio.name = 'baseLayer';
+    radio.id = name;
+    radio.checked = map.hasLayer(layer);
+
+    var label = document.createElement('label');
+    label.htmlFor = name;
+    label.textContent = name;
+
+    radio.addEventListener('change', function() {
+      if (this.checked) {
+        Object.values(baseMaps).forEach(l => map.removeLayer(l));
+        map.addLayer(layer);
+      }
+    });
+
+    layerControlContainer.appendChild(radio);
+    layerControlContainer.appendChild(label);
+    layerControlContainer.appendChild(document.createElement('br'));
+  });
+
+  // Add overlay maps (as checkboxes) to the control panel
+  Object.entries(overlayMaps).forEach(([name, layer]) => {
+    var checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = name;
+    checkbox.checked = map.hasLayer(layer);
+
+    var label = document.createElement('label');
+    label.htmlFor = name;
+    label.textContent = name;
+
+    checkbox.addEventListener('change', function() {
+      if (this.checked) {
+        map.addLayer(layer);
+      } else {
+        map.removeLayer(layer);
+      }
+    });
+
+    layerControlContainer.appendChild(checkbox);
+    layerControlContainer.appendChild(label);
+    layerControlContainer.appendChild(document.createElement('br'));
+  });
+}
+

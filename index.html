@@ -2,43 +2,26 @@
 <html>
   <head>
     <title>SK Leaflet</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet-search/dist/leaflet-search.min.css"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css"
-    />
-    <link rel="stylesheet" href="../sidebar/sidebar.css" />
-    <!-- <link rel="stylesheet" href="../coordinates/Control.Coordinates.css">to be added later -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-search/dist/leaflet-search.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css"/>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/sidebar.css" />
+    <link rel="stylesheet" href="../css/L.LayerTreeControl.css">
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="src\Control.Coordinates.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"></script>
     <script src="https://cesium.com/downloads/cesiumjs/releases/1.78/Build/Cesium/Cesium.js"></script>
     <script src="https://unpkg.com/leaflet-search/dist/leaflet-search.min.js"></script>
     <script src="https://unpkg.com/leaflet-search"></script>
     <script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.min.js"></script>
-    <script src="../sidebar/sidebar.js"></script>
-    <!-- <script src="../coordinates/Control.Coordinates.js"></script> to be added later -->
+    <script src="../script/sidebar.js"></script>
+    <script src="../script/L.LayerTreeControl.js"></script>
   </head>
 
-  <script type="module" src="../script/script.js"></script>
-
   <body>
-    <script type="module" src="../script/style.js"></script>
     <script type="module" src="../script/script.js"></script>
-    <!-- <script src="../coordinates/Control.Coordinates.js"> </script> to be added later-->
     <div id="header">
       <div id="logo">
         <img src="../assets/sk.png" alt="Logo" />
@@ -63,7 +46,7 @@
               <a href="#movie-details" role="tab"><i class="fa fa-film"></i></a>
             </li>
             <li>
-              <a href="#settings" role="tab"><i class="fa fa-gear"></i></a>
+              <a href="#layer-control-pane" role="tab"><i class="fa fa-database" aria-hidden="true"></i></a>
             </li>
             <li>
                 <a href="#about-me" role="tab"><i class="fa fa-user-circle"></i></a>
@@ -186,13 +169,13 @@
 
 
           </div>
-          <div class="sidebar-pane" id="settings">
+          <div class="sidebar-pane" id="layer-control-pane">
             <h1 class="sidebar-header">
-              Settings<span class="sidebar-close"
-                ><i class="fa fa-caret-left"></i
-              ></span>
+              Layers<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
             </h1>
-            <p>Settings Pane Content</p>
+            <div class="custom-layer-control">
+              <!-- Custom layer control checkboxes will be added here via JavaScript -->
+            </div>
           </div>
         </div>
       </div>
@@ -200,8 +183,6 @@
       <div id="mapid" style="height: 850px"></div>
     </div>
 
-    <!--         <div class="footer">
-
-          </div> -->
   </body>
+
 </html>
